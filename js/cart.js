@@ -57,6 +57,11 @@ function displayCart() {
   } else {
       console.error('Cart total element not found.');
   }
+  const checkoutButton = document.createElement('button');
+   checkoutButton.id = 'checkout-btn';
+   checkoutButton.textContent = 'Proceed to Checkout';
+   checkoutButton.onclick = checkout;
+   cartContainer.appendChild(checkoutButton);
 }
 
 function updateQuantity(bookId, quantity) {
