@@ -6,21 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Expose displayWishlist globally for script.js
-window.displayWishlist = displayWishlist;
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartCount();
-  updateAuthStatus();
-  displayWishlist();
-  setupWishlistEventListeners();
-});
-
-// Expose displayWishlist globally for script.js
-window.displayWishlist = displayWishlist;
+//window.displayWishlist = displayWishlist;
 
 function displayWishlist() {
   const wishlistContainer = document.querySelector('.wishlist-container');
   if (!wishlistContainer) {
-      console.error('Wishlist container not found. Check wishlist.html for .wishlist-container element.');
+    console.error('Wishlist container not found. Ensure wishlist.html contains an element with the class .wishlist-container.');
       return;
   }
 
@@ -38,7 +29,7 @@ function displayWishlist() {
       return;
   }
   
-  wishlistContainer.innerHTML = '';
+  wishlistContainer.innerHTML = '<p>Here are the books in your wishlist:</p>';
 
   if (wishlist.length === 0) {
       wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
@@ -54,7 +45,7 @@ function displayWishlist() {
       wishlistItem.classList.add('wishlist-item');
       wishlistItem.dataset.bookId = item.id;
       wishlistItem.innerHTML = `
-          <img src="${item.image || 'assets/placeholder.jpg'}" alt="${item.title}">
+        <img src="${item.image || './assets/placeholder.jpg'}" alt="${item.title}">
           <div class="wishlist-item-details">
               <h3>${item.title}</h3>
               <p>Author: ${item.author || 'Unknown'}</p>
@@ -110,15 +101,17 @@ function updateCartCount() {
       return;
   }
   const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.querySelectorAll('#cart-count').forEach(span => span.textContent = count);
+document.querySelectorAll('#cart-count').forEach(span => {
+    if (span) span.textContent = count;
+});
   console.log('Updated cart count:', count); // Debug
 }
 
 function isLoggedIn() {
   return !!localStorage.getItem('token');
 }
-
-function updateAuthStatus() {
+const loginLink = document.querySelector('#login-signup');
+const logoutLink = document.querySelector('#logout');
   const loginLink = document.getElementById('login-signup');
   const logoutLink = document.getElementById('logout');
   if (loginLink && logoutLink) {
