@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Expose displayWishlist globally for script.js
 window.displayWishlist = displayWishlist;
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartCount();
+  updateAuthStatus();
+  displayWishlist();
+  setupWishlistEventListeners();
+});
+
+// Expose displayWishlist globally for script.js
+window.displayWishlist = displayWishlist;
 
 function displayWishlist() {
   const wishlistContainer = document.querySelector('.wishlist-container');
@@ -14,28 +23,25 @@ function displayWishlist() {
       console.error('Wishlist container not found. Check wishlist.html for .wishlist-container element.');
       return;
   }
-  console.log('Displaying wishlist...'); // Debug
 
   if (!isLoggedIn()) {
       wishlistContainer.innerHTML = '<p>Please log in to view your wishlist.</p>';
-      console.log('User not logged in.');
       return;
   }
 
   let wishlist;
   try {
       wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-      console.log('Wishlist contents:', wishlist); // Debug
   } catch (e) {
       console.error('Failed to parse wishlist:', e);
       wishlistContainer.innerHTML = '<p>Error loading wishlist. Please try again.</p>';
       return;
   }
+  
   wishlistContainer.innerHTML = '';
 
   if (wishlist.length === 0) {
       wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
-      console.log('Wishlist is empty.');
       return;
   }
 
@@ -46,7 +52,7 @@ function displayWishlist() {
       }
       const wishlistItem = document.createElement('div');
       wishlistItem.classList.add('wishlist-item');
-      wishlistItem.dataset.bookId = item.id; // For event listeners
+      wishlistItem.dataset.bookId = item.id;
       wishlistItem.innerHTML = `
           <img src="${item.image || 'assets/placeholder.jpg'}" alt="${item.title}">
           <div class="wishlist-item-details">
@@ -60,7 +66,6 @@ function displayWishlist() {
           </div>
       `;
       wishlistContainer.appendChild(wishlistItem);
-      console.log('Rendered wishlist item:', item.title); // Debug
   });
 }
 
@@ -75,10 +80,8 @@ function setupWishlistEventListeners() {
       const bookId = wishlistItem.dataset.bookId;
 
       if (target.classList.contains('add-to-cart-btn')) {
-          console.log('Add to cart clicked for book ID:', bookId); // Debug
           window.addToCart(bookId);
       } else if (target.classList.contains('remove-wishlist-btn')) {
-          console.log('Remove wishlist clicked for book ID:', bookId); // Debug
           removeFromWishlist(bookId);
       }
   });
@@ -95,7 +98,6 @@ function removeFromWishlist(bookId) {
       alert('Error removing item from wishlist. Please try again.');
       return;
   }
-  console.log('Removed item from wishlist, ID:', bookId); // Debug
   displayWishlist();
 }
 
