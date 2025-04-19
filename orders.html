@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History - Book4U</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Book4U</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        <li><a href="orders.html">Orders</a></li>
+        <li id="login-signup"><a href="login.html">Login/Signup</a></li>
+        <li id="logout" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="order-history">
+      <h2>Your Order History</h2>
+      <div class="orders-container"></div>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 Book4U</p>
+  </footer>
+  <script src="js/orders.js"></script>
+</body>
+</html>

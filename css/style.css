@@ -1,0 +1,233 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #555;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .books-container, .cart-container, .orders-container, .wishlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .book-card, .cart-item, .order-item, .wishlist-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: box-shadow 0.2s;
+  }
+  
+  .book-card:hover, .cart-item:hover, .wishlist-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .book-card img, .cart-item img, .wishlist-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .book-card h3, .cart-item h3, .order-item h4, .wishlist-item h3 {
+    margin: 0 0 5px;
+    font-size: 1em;
+    color: #007bff;
+  }
+  
+  .book-card p, .cart-item p, .order-item p, .wishlist-item p {
+    margin: 0 0 8px;
+    font-size: 0.9em;
+  }
+  
+  .book-card .price, .cart-item .price, .wishlist-item .price {
+    font-weight: bold;
+    color: green;
+  }
+  
+  .book-card button, .cart-item button, .wishlist-item button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin: 5px;
+  }
+  
+  .book-card button:hover, .cart-item button:hover, .wishlist-item button:hover {
+    background-color: #0056b3;
+  }
+  
+  .cart-item-actions button {
+    background-color: #dc3545;
+    margin-left: 10px;
+  }
+  
+  .cart-item-actions button:hover {
+    background-color: #c82333;
+  }
+  
+  .book-card-actions, .wishlist-item-actions, .cart-item-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .book-card-details, .wishlist-item-details, .cart-item-details {
+    text-align: left;
+  }
+  
+  #cart-total {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  #checkout-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: block;
+    width: 200px;
+    margin: 20px auto 0;
+  }
+  
+  #checkout-btn:hover {
+    background-color: darkgreen;
+  }
+  
+  .auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .auth-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .auth-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .auth-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .auth-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .auth-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .auth-container .error-message {
+    color: red;
+    margin-top: 5px;
+    text-align: center;
+  }
+  
+  .auth-container a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .auth-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .filter-container {
+    margin-bottom: 20px;
+  }
+  
+  .filter-container select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .books-container.loading::before {
+    content: 'Loading...';
+    display: block;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 20px;
+  }
