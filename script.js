@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', async () => {
           const bookId = button.getAttribute('data-id');
-          await addToCart(bookId);
+          await addToCart(bookId, books);
         });
       });
     }
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  function addToCart(bookId) {
+  function addToCart(bookId, books) {
     if (!isLoggedIn()) {
       alert('Please log in to add items to your cart.');
       window.location.href = 'login.html';
