@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartCount();
   updateAuthStatus();
   displayWishlist();
+  setupWishlistEventListeners();
 });
+
+// Expose displayWishlist globally for script.js
+window.displayWishlist = displayWishlist;
 
 function displayWishlist() {
   const wishlistContainer = document.querySelector('.wishlist-container');
@@ -10,7 +14,7 @@ function displayWishlist() {
       console.error('Wishlist container not found. Check wishlist.html for .wishlist-container element.');
       return;
   }
-  console.log('Displaying wishlist...'); // Debug: Confirm function runs
+  console.log('Displaying wishlist...'); // Debug
 
   if (!isLoggedIn()) {
       wishlistContainer.innerHTML = '<p>Please log in to view your wishlist.</p>';
@@ -21,7 +25,7 @@ function displayWishlist() {
   let wishlist;
   try {
       wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-      console.log('Wishlist contents:', wishlist); // Debug: Inspect wishlist data
+      console.log('Wishlist contents:', wishlist); // Debug
   } catch (e) {
       console.error('Failed to parse wishlist:', e);
       wishlistContainer.innerHTML = '<p>Error loading wishlist. Please try again.</p>';
@@ -42,6 +46,7 @@ function displayWishlist() {
       }
       const wishlistItem = document.createElement('div');
       wishlistItem.classList.add('wishlist-item');
+      wishlistItem.dataset.bookId = item.id; // For event listeners
       wishlistItem.innerHTML = `
           <img src="${item.image || 'assets/placeholder.jpg'}" alt="${item.title}">
           <div class="wishlist-item-details">
@@ -50,12 +55,32 @@ function displayWishlist() {
               <p class="price">$${item.price.toFixed(2)}</p>
           </div>
           <div class="wishlist-item-actions">
-              <button onclick="addToCart('${item.id}')">Add to Cart</button>
-              <button onclick="removeFromWishlist('${item.id}')">Remove</button>
+              <button class="add-to-cart-btn">Add to Cart</button>
+              <button class="remove-wishlist-btn">Remove</button>
           </div>
       `;
       wishlistContainer.appendChild(wishlistItem);
-      console.log('Added wishlist item:', item.title); // Debug: Confirm item rendering
+      console.log('Rendered wishlist item:', item.title); // Debug
+  });
+}
+
+function setupWishlistEventListeners() {
+  const wishlistContainer = document.querySelector('.wishlist-container');
+  if (!wishlistContainer) return;
+
+  wishlistContainer.addEventListener('click', (event) => {
+      const target = event.target;
+      const wishlistItem = target.closest('.wishlist-item');
+      if (!wishlistItem) return;
+      const bookId = wishlistItem.dataset.bookId;
+
+      if (target.classList.contains('add-to-cart-btn')) {
+          console.log('Add to cart clicked for book ID:', bookId); // Debug
+          window.addToCart(bookId);
+      } else if (target.classList.contains('remove-wishlist-btn')) {
+          console.log('Remove wishlist clicked for book ID:', bookId); // Debug
+          removeFromWishlist(bookId);
+      }
   });
 }
 

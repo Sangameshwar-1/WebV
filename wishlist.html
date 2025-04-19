@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wishlist - Book4U</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - Book4U</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">Book4U</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="wishlist.html">Wishlist</a></li>
-        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-        <li><a href="orders.html">Orders</a></li>
-        <li id="login-signup"><a href="login.html">Login/Signup</a></li>
-        <li id="logout" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section id="wishlist-items">
-      <h2>Your Wishlist</h2>
-      <div class="wishlist-container"></div>
-    </section>
-  </main>
-  <footer>
-    <p>© 2025 Book4U</p>
-  </footer>
-  <script src="js/wishlist.js"></script>
+    <header>
+        <div class="logo">Book4U</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li id="login-signup"><a href="login.html">Login/Signup</a></li>
+                <li id="logout" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="wishlist-items">
+            <h2>Your Wishlist</h2>
+            <div class="wishlist-container" style="display: block; min-height: 100px;"></div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Book4U</p>
+    </footer>
+    <script src="js/wishlist.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'932a8a02c9314526',t:'MTc0NTA0NjE3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
